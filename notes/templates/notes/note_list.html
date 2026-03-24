@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  All Notes — Sticky Notes
+{% endblock %}
+
+{% block content %}
+  <div class="page-header">
+    <h2>{{ page_title }}</h2>
+    <span class="note-count">{{ notes.count }} note{{ notes.count|pluralize }}</span>
+  </div>
+
+  <div class="notes-grid">
+    {% for note in notes %}
+      <article class="note-card note-card--{{ note.colour }}">
+        <h3 class="note-card__title"><a href="{% url 'note_detail' note.pk %}">{{ note.title }}</a></h3>
+        <p class="note-card__preview">{{ note.content|truncatewords:25 }}</p>
+        <footer class="note-card__footer">
+          <span class="note-card__date">{{ note.updated_at|date:'d M Y' }}</span>
+          <div class="note-card__actions">
+            <a href="{% url 'note_update' note.pk %}" class="btn btn-sm btn-secondary">Edit</a>
+            <a href="{% url 'note_delete' note.pk %}" class="btn btn-sm btn-danger">Delete</a>
+          </div>
+        </footer>
+      </article>
+    {% empty %}
+      <div class="empty-state">
+        <p>No notes yet.</p>
+        <a href="{% url 'note_create' %}" class="btn btn-primary">Create your first note</a>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

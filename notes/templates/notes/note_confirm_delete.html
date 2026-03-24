@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Delete Note — Sticky Notes
+{% endblock %}
+
+{% block content %}
+  <section class="form-section">
+    <div class="form-card form-card--danger">
+      <h2>Delete Note</h2>
+      <p>
+        Are you sure you want to permanently delete <strong>"{{ note.title }}"</strong>?
+      </p>
+      <p class="text-muted">This action cannot be undone.</p>
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-actions">
+          <button type="submit" class="btn btn-danger">Yes, Delete It</button>
+          <a href="{% url 'note_list' %}" class="btn btn-outline">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </section>
+{% endblock %}

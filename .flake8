@@ -1,0 +1,34 @@
+[flake8]
+# Maximum line length to match PEP 8 and Black formatter default.
+max-line-length = 79
+
+# Minimum acceptable cyclomatic complexity before a warning is raised.
+max-complexity = 10
+
+# Directories and files Flake8 should never lint.
+exclude =
+    .git,
+    __pycache__,
+    *.pyc,
+    .venv,
+    venv,
+    env,
+    migrations,
+    staticfiles,
+    media,
+    node_modules,
+    .tox,
+    dist,
+    build
+
+# Rules to ignore globally.
+# E203 - whitespace before ':' (conflicts with Black slice formatting).
+# W503 - line break before binary operator (conflicts with PEP 8 W504).
+ignore = E203, W503
+
+# Per-file rule overrides.
+per-file-ignores =
+    # Allow unused imports in __init__.py re-export files.
+    __init__.py: F401
+    # Allow long lines and missing docstrings in Django settings.
+    settings.py: E501
