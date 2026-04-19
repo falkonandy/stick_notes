@@ -33,6 +33,7 @@ and deleting colour-coded sticky notes.
 ## Project Structure
 
 ```
+
 sticky_notes/
 ├── manage.py
 ├── .flake8
